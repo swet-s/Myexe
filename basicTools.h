@@ -109,3 +109,10 @@ bool isInt(double a)
         return 1;
     return 0;
 }
+
+bool isdigit(char a)
+{
+    if ((a>='0' && a<='9') || a=='.')
+        return 1;
+    return 0;
+}

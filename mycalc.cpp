@@ -62,17 +62,17 @@ int compute(int a, int b, string op) //Operators which will always return an int
 
 string compute(string a, string b, string op)
 {
-    if (op=="+") return to_string((stoll(a)+stoll(b))%modl());
-    if (op=="-") return a-b;
-    if (op=="*") return mulmod(a, b, modl());
-    if (op=="//") return a/b;
-    if (op=="**") return power(a, b, modl());
-
-    // if (op=="+") return a+b;
+    // if (op=="+") return to_string((stoll(a)+stoll(b))%modl());
     // if (op=="-") return a-b;
-    // if (op=="*") return a*b;
-    if (op=="/") return a/b;
-    if (op=="**") return pow(a, b);
+    // if (op=="*") return mulmod(a, b, modl());
+    // if (op=="//") return a/b;
+    // if (op=="**") return power(a, b, modl());
+
+    // // if (op=="+") return a+b;
+    // // if (op=="-") return a-b;
+    // // if (op=="*") return a*b;
+    // if (op=="/") return a/b;
+    // if (op=="**") return pow(a, b);
     return "";
 }
 
@@ -90,16 +90,21 @@ int precedence(string op)
 
 bool solve(string& command)
 {
+    debug("splitCommand");
     vector<string> tokenList = splitCommand(command); // Splits digits, brackets & rest.
 
+    debug("splitOperator");
     if (!splitOperator(tokenList)) return 0; // Split rest into valid operators or report.
+    debug("HandleMinus");
     if (!HandleMinus(tokenList)) return 0; // Convert binary '-' to unary '-'.
+    debug("UnToBin");
     if (!UnToBin(tokenList)) return 0; // Convert unary operators as pseudo binary.
+    debug("checkBrackets");
     if (!checkBrackets(tokenList)) return 0; // Check order of brackets or report. 
 
     debug(tokenList);
     
-    command = evaluate(tokenList);
+    // command = evaluate(tokenList);
     printl(command);
     return 1;
 }
@@ -118,14 +123,14 @@ signed main()
 
         if (command == "exit") break;
         else if (command == "mod") changeMod();
-        else if (command == "modl") changeModl();
+        else if (command == "modl") changeModl(); //Todo two mode programmer mode and nomal mode
         else if (command == "help") giveHelp();
-        else if (command.back() == '#')
-        {
-            command.pop_back();
-            if (solve(command)) return toBinary(command);
-            else giveError();
-        }
+        // else if (command.back() == '#')
+        // {
+        //     command.pop_back();
+        //     if (solve(command)) return toBinary(command);
+        //     else giveError();
+        // }
         else if (!solve(command)) giveError();
     }
 }
