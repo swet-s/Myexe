@@ -101,7 +101,8 @@ bool solve(string& command)
     if (!UnToBin(tokenList)) return 0; // Convert unary operators as pseudo binary.
     debug("checkBrackets");
     if (!checkBrackets(tokenList)) return 0; // Check order of brackets or report. 
-
+    debug("checkOperands");
+    if (!checkOperands(tokenList)) return 0; // Check if digits are valid & within range.
     debug(tokenList);
     
     // command = evaluate(tokenList);

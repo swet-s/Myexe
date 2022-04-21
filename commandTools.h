@@ -152,8 +152,9 @@ bool checkBrackets(vector<string>& tokens)
     return 1;
 }
 
-bool isValidNumber(string s)
+bool checkOperands(vector<string>& tokens)
 {
+    
     try{ 
         stoll(s);
     }
@@ -161,10 +162,8 @@ bool isValidNumber(string s)
         return 0;
     }
     return 1;
-}
 
-bool checkNumber(string s)
-{
+
     try{ 
         stoll(s);
     }
@@ -177,6 +176,8 @@ bool checkNumber(string s)
     }
     return 1;
 }
+
+
 
 bool checkBinary(string ss)
 {
